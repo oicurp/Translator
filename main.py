@@ -8,13 +8,15 @@ import os
 
 from docx import Document
 
-import translate as t
+#import translate as t # 通用领域的翻译模块，根据需要选择。
+import fieldtranslate as t # 医疗领域的翻译模块，建议分析方法选择本模块。
 
 
 source_folder = r"C:\Python\Scripts\Translate\1_source"
 output_folder = r"C:\Python\Scripts\Translate\2_output"
 file_path = ""
 file_out_path = ""
+file_name_english = ""
 
 
 
@@ -30,6 +32,11 @@ for file in os.listdir(source_folder):
     for p in document.paragraphs:
         if p.text.isdigit():    # make sure numbers are not translated into english
             pass
+        elif p.text.replace('.', '', 1).isdigit():
+            pass
+        #elif p.text.isalnum():
+         #   pass
+            
         else:
             p.text = t.translate_text(p.text)
         
@@ -38,13 +45,20 @@ for file in os.listdir(source_folder):
         for r in table.rows:
             for c in r.cells:
                 for p in c.paragraphs:
-                    if p.text.isdigit():
+                    if p.text.isdigit(): # need more control here, e.g., digit, float, or alphabet, do not translate.
                         pass
+                    elif p.text.replace('.', '', 1).isdigit():
+                        pass
+                   # elif p.text.isalnum():
+                    #    pass
                     else:
                         p.text = t.translate_text(p.text)
     
-    file_out_path = os.path.join(output_folder, t.translate_text(file)) # ensure file name is also translated
+    file_name_english = t.translate_text(file)
+    file_name_english = file_name_english.replace('. docx','.docx') # fixing file extension
+    file_out_path = os.path.join(output_folder, file_name_english) # ensure file name is also translated
     document.save(file_out_path)
 
 
+print("---------------------------------------")
 print("Translation successfully completed.")

@@ -8,8 +8,8 @@ def translate_text(q):
     import random
     import json
     
-    appid = '20230818001784866'  # 填写你的appid
-    secretKey = 'nnzqQih7ge1am5oi8QKc'  # 填写你的密钥
+    appid = 'xxxxxxxx'  # 填写你的appid
+    secretKey = 'xxxxxxx'  # 填写你的密钥
     
     httpClient = None
     myurl = '/api/trans/vip/fieldtranslate'

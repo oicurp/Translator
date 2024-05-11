@@ -4,6 +4,7 @@ A python script that auto translate word (docx) document
 Note:
 1) Got to baidu Fanyi api site, to apply for developer account.
 2) Create your own terminology for API will make the translation more accurate.
+3) use your own Baidu credentials in the fieldtranslate.py and translate.py modules.
 
 Development needed:
 1) to skip the non-chinese paragraphs
